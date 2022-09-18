@@ -17,6 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('auth/user', function () {
+    if (auth()->check()) {
+        return response()->json([
+            'authUser' => auth()->user()
+        ]);
+        return null;
+    }
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -26,7 +35,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/users', function(){
+    Route::get('/users', function () {
         return view('users');
     })->name('users');
 });

@@ -6,9 +6,9 @@ use App\Models\User;
 
 class CreateUserActions
 {
-    public static function create(String $name, String $email, String $password): void
+    public static function create(String $name, String $email, String $password): User
     {
-        User::create([
+       return User::create([
             'name' => $name,
             'email' => $email,
             'password' => $password,
